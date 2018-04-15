@@ -5,10 +5,11 @@ import java.util.regex.Pattern;
 
 public class Problem6 {
 
-
     public static String writeInMilitaryTime(String timeToConvert) {
+        //Regular Expression for parsing digital time
+        //group 1 = hour, group 2 = minutes, group 3 = am or pm
+        String timeFind = "(1[012]|[1-9]):([0-5][0-9])(am|pm)";
 
-        String timeFind = "(1[012]|[1-9]):([0-5][0-9])(am|pm)"; //Regular Expression for parsing digital time
 
         String[] analogTime = { "Zero Zero", "Zero One", "Zero Two", "Zero Three", "Zero Four", "Zero Five", "Zero Six", "Zero Seven", "Zero Eight", "Zero Nine",
                                 "Ten", "Eleven","Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen",
@@ -25,12 +26,15 @@ public class Problem6 {
 
         if (m.find()){
             if (m.group(3).equals("pm")){
-                matchRawtoAnalog[0] = Integer.valueOf(m.group(1)) + 12; //converts pm hours to military
+                //converts pm hours to military
+                matchRawtoAnalog[0] = Integer.valueOf(m.group(1)) + 12;
             }
             else {
-                matchRawtoAnalog[0] = Integer.valueOf(m.group(1));      //am hours don't need converting
+                //am hours don't need converting
+                matchRawtoAnalog[0] = Integer.valueOf(m.group(1));
             }
-            matchRawtoAnalog[1] = Integer.valueOf(m.group(2));          // takes minutes
+            // takes minutes
+            matchRawtoAnalog[1] = Integer.valueOf(m.group(2));
         }
 
         String printAnalogTime = "";
@@ -43,4 +47,5 @@ public class Problem6 {
 
         return printAnalogTime;
     }
+
 }
